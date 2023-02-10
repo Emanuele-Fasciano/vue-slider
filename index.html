@@ -37,25 +37,34 @@
 <body>
   <div id="root">
     <div class="my-carousel-container">
-        <div class="my-carousel">
+        <div class="my-carousel"
+             @mouseover="stopAutoplay()">
             <div class="my-carousel-main" id="slides-container">
                 <div class="slide active">
-                    <img :src="slides[0].image">
+                    <img :src="slides[activeImage].image">
                     <div class="slide-text">
-                        <h2>{{slides[0].title}}</h2>
-                        <p>{{slides[0].text}}</p>
+                        <h2>{{slides[activeImage].title}}</h2>
+                        <p>{{slides[activeImage].text}}</p>
                     </div>
                 </div>
             </div>
     
             <div class="my-carousel-thumbs" id="thumbs-container">
-                    <img :src="image" class="col thumb" v-for="image in slides.length.image">
+                <div class="col thumb">
+                    <!-- ciclo con il v-for l'array di oggetti e nel src stampo la proprietà "image di ogni singolo oggetto" -->
+                    <!-- con l'index mi recupero l'indice dell'array che corrisponderà all'immagine selezionata -->
+                    <img :src="slide.image" 
+                         v-for="(slide, index) in slides"  
+                         :class="(index == activeImage) ? 'border-active' : ''"
+                          @click="swithToImage(index)">
+                </div>
+                <!-- sull "click della thumb passo l'indice dell'immagine alla funzione" -->
             </div>
         </div>
     
         <div class="my-carousel-controls">
     
-            <button class="btn btn-outline-dark" id="prev">
+            <button class="btn btn-outline-dark"  id="prev" @click="prevImage()">
                 <i class="fa-solid fa-chevron-left"></i>
             </button>
     
@@ -67,7 +76,7 @@
                 <i class="fa-solid fa-stop"></i>
             </button>
     
-            <button class="btn btn-outline-dark" id="next">
+            <button class="btn btn-outline-dark" id="next" @click="nextImage()">
                 <i class="fa-solid fa-chevron-right"></i>
             </button>
         </div>
