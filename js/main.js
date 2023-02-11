@@ -54,16 +54,17 @@ const app = Vue.createApp({
             }
         },
 
-                // l'index è il parametro che contiene l'indice dell'immagine cliccata
+        // l'index è il parametro che contiene l'indice dell'immagine cliccata
         swithToImage(index) {  // sul click della thumb si visualizza l'immagine corrispondente
             this.activeImage = index;
         },
 
-            // bloccare l'autoplay sull hover dello slider
+        //funzione che blocca l'autoplay sul mouseover dello slider
         stopAutoplay() {
             clearInterval(this.autoplay)
         },
 
+        //funzione che fa ripartire l'autoplay al mouseleave dello slider
         startAutoplay() {
             setInterval(()=>{
                 this.nextImage()
@@ -72,7 +73,7 @@ const app = Vue.createApp({
 
     },
 
-    // in methods scrivo cosa deve avvenire "ON LOAD"
+    // in created scrivo cosa deve avvenire "ON LOAD"
     created(){
         this.autoplay = setInterval(() =>{
             this.nextImage();
