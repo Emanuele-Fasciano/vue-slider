@@ -62,6 +62,12 @@ const app = Vue.createApp({
             // bloccare l'autoplay sull hover dello slider
         stopAutoplay() {
             clearInterval(this.autoplay)
+        },
+
+        startAutoplay() {
+            setInterval(()=>{
+                this.nextImage()
+            },3000)
         }
 
     },

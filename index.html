@@ -38,7 +38,8 @@
   <div id="root">
     <div class="my-carousel-container">
         <div class="my-carousel"
-             @mouseover="stopAutoplay()">
+             @mouseover="stopAutoplay()"
+             @mouseleave="startAutoplay()">
             <div class="my-carousel-main" id="slides-container">
                 <div class="slide active">
                     <img :src="slides[activeImage].image">
